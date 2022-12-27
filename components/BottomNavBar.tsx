@@ -23,43 +23,49 @@ const listOfRoutes: {
     icon: (color) => <AntDesign name="calendar" size={22} color={color} />,
   },
   {
-    name: "Download",
-    goTo: "Download",
+    name: "My List",
+    goTo: "MyList",
     icon: (color) => (
       <Ionicons name="md-bookmark-outline" size={22} color={color} />
     ),
   },
   {
-    name: "Profile",
-    goTo: "Profile",
+    name: "Download",
+    goTo: "Download",
     icon: (color) => (
       <Ionicons name="cloud-download-outline" size={22} color={color} />
     ),
   },
   {
-    name: "MyList",
-    goTo: "MyList",
+    name: "Profile",
+    goTo: "Profile",
     icon: (color) => <AntDesign name="user" size={22} color={color} />,
   },
 ];
 
-const BottomNavBar: React.FC = () => {
+const BottomNavBar: React.FC<{ routeName: string }> = ({ routeName }) => {
   const navigation = useNavigation();
-  const [currentRoute, setCurrentRoute] = useState<string>("Home");
+  console.log(routeName);
+
   return (
-    <View className="flex-row absolute top-[98%] w-full py-2 bg-midnight-400  px-6 rounded-xl">
+    <View className="flex-row absolute top-[97%] w-full py-3  px-6 rounded-xl">
       {listOfRoutes?.map((route, index) => {
         return (
           <TouchableOpacity
             key={index}
             onPress={() => {
-              setCurrentRoute(route.name);
               navigation.navigate(route.goTo);
             }}
-            className="bg-black items-center justify-center w-1/5"
+            className="items-center justify-center w-1/5"
           >
-            {route.icon(currentRoute === route.name ? "#161a35" : "#aaaaaa")}
-            <Text className={`text-[10px] text-red-400`}>{route.name}</Text>
+            {route.icon(routeName === route.name ? "#5c5f72" : "#aaaaaa")}
+            <Text
+              className={`text-[10px] ${
+                routeName === route.name ? "text-midnight-400" : "text-gray-400"
+              }`}
+            >
+              {route.name}
+            </Text>
           </TouchableOpacity>
         );
       })}
