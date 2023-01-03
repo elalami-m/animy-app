@@ -21,6 +21,12 @@ module.exports = {
           900: "#0b0d1a",
         },
       },
+      fontFamily: {
+        Montserrat: ["Montserrat"],
+        Roboto: ["Roboto"],
+        "Montserrat-Thiny": ["Montserrat-Thiny"],
+        "Montserrat-Bold": ["Montserrat-Bold"],
+      },
     },
   },
   plugins: [],

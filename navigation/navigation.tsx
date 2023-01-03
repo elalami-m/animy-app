@@ -1,8 +1,9 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View } from "react-native";
+import { BottomNavBar } from "../components";
 import { Calendar, Download, HomeScreen, MyList, Profile } from "../screens";
 
-const Stack = createStackNavigator();
+const BottomTabNavigator = createBottomTabNavigator();
 
 const rootRoute: { component: any; name: string }[] = [
   { component: HomeScreen, name: "Home" },
@@ -14,19 +15,22 @@ const rootRoute: { component: any; name: string }[] = [
 
 const Navigation = () => {
   return (
-    <Stack.Navigator
+    <BottomTabNavigator.Navigator
       screenOptions={{
         headerShown: false,
       }}
+      tabBar={({ navigation, state }) => (
+        <BottomNavBar navigation={navigation} state={state} />
+      )}
     >
       {rootRoute.map((component) => (
-        <Stack.Screen
+        <BottomTabNavigator.Screen
           component={component.component}
           name={component.name}
           key={component.name}
         />
       ))}
-    </Stack.Navigator>
+    </BottomTabNavigator.Navigator>
   );
 };
 

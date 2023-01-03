@@ -14,7 +14,6 @@ const Calendar: React.FC<Props> = ({ navigation }) => {
       <View className="flex-1 justify-center items-center bg-gray-200 p-4">
         <Text className="font-bold text-2xl">Calendar Page</Text>
       </View>
-      <BottomNavBar routeName="Calendar" />
     </AndroidSafeAreaView>
   );
 };

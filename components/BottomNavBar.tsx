@@ -1,6 +1,6 @@
 import { View, Text, Touchable, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   AntDesign,
   MaterialCommunityIcons,
@@ -43,12 +43,13 @@ const listOfRoutes: {
   },
 ];
 
-const BottomNavBar: React.FC<{ routeName: string }> = ({ routeName }) => {
-  const navigation = useNavigation();
-  console.log(routeName);
+const BottomNavBar: React.FC = ({ navigation, state }: any) => {
+  const routeName = state?.routeNames[state?.index];
 
   return (
-    <View className="flex-row absolute top-[97%] w-full py-3  px-6 rounded-xl">
+    <View
+      className={`flex-row absolute bg-white top-[93%] w-full py-3  px-6 rounded-xl`}
+    >
       {listOfRoutes?.map((route, index) => {
         return (
           <TouchableOpacity
@@ -58,10 +59,10 @@ const BottomNavBar: React.FC<{ routeName: string }> = ({ routeName }) => {
             }}
             className="items-center justify-center w-1/5"
           >
-            {route.icon(routeName === route.name ? "#5c5f72" : "#aaaaaa")}
+            {route.icon(routeName === route.goTo ? "#5c5f72" : "#aaaaaa")}
             <Text
               className={`text-[10px] ${
-                routeName === route.name ? "text-midnight-400" : "text-gray-400"
+                routeName === route.goTo ? "text-midnight-400" : "text-gray-400"
               }`}
             >
               {route.name}

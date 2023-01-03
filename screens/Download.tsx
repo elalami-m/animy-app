@@ -10,12 +10,13 @@ type Props = {
 
 const Download: React.FC<Props> = ({ navigation }) => {
   return (
-    <AndroidSafeAreaView>
-      <View className="flex-1 justify-center items-center bg-gray-200 p-4">
-        <Text className="font-bold text-2xl">Download Page</Text>
-      </View>
-      <BottomNavBar routeName="Download" />
-    </AndroidSafeAreaView>
+    <View className="flex-1">
+      <AndroidSafeAreaView>
+        <View className="flex-1 justify-center items-center bg-gray-200 p-4">
+          <Text className="font-bold text-2xl">Download Page</Text>
+        </View>
+      </AndroidSafeAreaView>
+    </View>
   );
 };
 

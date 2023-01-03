@@ -13,7 +13,10 @@ const AndroidSafeAreaView: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <SafeAreaView style={!removePaddingTop && styles.AndroidSafeAreaView}>
+    <SafeAreaView
+      className={className}
+      style={!removePaddingTop && styles.AndroidSafeAreaView}
+    >
       {children}
     </SafeAreaView>
   );
