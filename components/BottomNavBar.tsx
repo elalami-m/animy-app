@@ -23,7 +23,7 @@ const listOfRoutes: {
     icon: (color) => <AntDesign name="calendar" size={22} color={color} />,
   },
   {
-    name: "My List",
+    name: "MyList",
     goTo: "MyList",
     icon: (color) => (
       <Ionicons name="md-bookmark-outline" size={22} color={color} />
@@ -46,32 +46,36 @@ const listOfRoutes: {
 const BottomNavBar: React.FC = ({ navigation, state }: any) => {
   const routeName = state?.routeNames[state?.index];
 
-  return (
-    <View
-      className={`flex-row absolute bg-white top-[93%] w-full py-3  px-6 rounded-xl`}
-    >
-      {listOfRoutes?.map((route, index) => {
-        return (
-          <TouchableOpacity
-            key={index}
-            onPress={() => {
-              navigation.navigate(route.goTo);
-            }}
-            className="items-center justify-center w-1/5"
-          >
-            {route.icon(routeName === route.goTo ? "#5c5f72" : "#aaaaaa")}
-            <Text
-              className={`text-[10px] ${
-                routeName === route.goTo ? "text-midnight-400" : "text-gray-400"
-              }`}
+  if (listOfRoutes.findIndex((item) => item.name === routeName) != -1)
+    return (
+      <View
+        className={`flex-row absolute bg-white top-[93%] w-full py-3  px-6 rounded-xl`}
+      >
+        {listOfRoutes?.map((route, index) => {
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                navigation.navigate(route.goTo);
+              }}
+              className="items-center justify-center w-1/5"
             >
-              {route.name}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
-    </View>
-  );
+              {route.icon(routeName === route.goTo ? "#5c5f72" : "#aaaaaa")}
+              <Text
+                className={`text-[10px] ${
+                  routeName === route.goTo
+                    ? "text-midnight-400"
+                    : "text-gray-400"
+                }`}
+              >
+                {route.name}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  else return null;
 };
 
 export default BottomNavBar;

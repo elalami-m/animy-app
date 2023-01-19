@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   rating?: string;
@@ -8,8 +9,13 @@ type Props = {
 };
 
 const AnimeCard: React.FC<Props> = ({ image, title, rating }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity className="rounded-lg">
+    <TouchableOpacity
+      className="rounded-lg "
+      onPress={() => navigation.navigate("AnimeDetails")}
+    >
+      <View className="w-full h-full absolute z-20 bg-gray-500 opacity-20 rounded-lg"></View>
       <Text className="absolute z-30 text-white bg-midnight-600 py-1 px-2 ml-2 mt-2 rounded-lg">
         {rating}
       </Text>
